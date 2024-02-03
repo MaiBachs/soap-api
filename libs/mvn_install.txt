@@ -1,0 +1,8 @@
+mvn install:install-file -Dfile=vptoken.jar -DgroupId=com.viettel -DartifactId=vptoken -Dversion=1.0 -Dpackaging=jar
+
+mvn install:install-file -Dfile=RDWF-3.3-Core.jar -DgroupId=com.viettel -DartifactId=RDWF-Core -Dversion=3.3 -Dpackaging=jar
+
+mvn install:install-file -Dfile=RDWF-3.3-Core-Mod.jar -DgroupId=com.viettel -DartifactId=RDWF-Core-Mod -Dversion=3.3 -Dpackaging=jar
+
+mvn install:install-file -Dfile=spring-data-jpa-extra/spring-data-jpa-extra-3.3.0.SPowerMedia.jar -DpomFile=spring-data-jpa-extra/spring-data-jpa-extra-3.3.0.SPowerMedia.pom
+mvn install:install-file -Dfile=spring-boot-starter-jpa-extra/spring-boot-starter-jpa-extra-3.3.0.SPowerMedia.jar -DpomFile=spring-boot-starter-jpa-extra/spring-boot-starter-jpa-extra-3.3.0.SPowerMedia.pom

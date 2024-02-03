@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://www.viettel.com/msm/smartphone/ws"
+           targetNamespace="http://www.viettel.com/msm/smartphone/ws">
+    <xs:include schemaLocation="base.xsd" />
+    <xs:complexType name="SurveyDto">
+        <xs:all>
+            <xs:element name="surveyId" type="xs:long" />
+            <xs:element name="branchId" type="xs:long" />
+            <xs:element name="branchCode" type="xs:string" />
+            <xs:element name="bcId" type="xs:long" />
+            <xs:element name="bcCode" type="xs:string" />
+            <xs:element name="userId" type="xs:long" />
+            <xs:element name="userCode" type="xs:string" />
+            <xs:element name="channelId" type="xs:long" />
+            <xs:element name="channelCode" type="xs:string" />
+            <xs:element name="surveyComment" type="xs:string" />
+            <xs:element name="status" type="xs:integer" />
+            <xs:element name="createdDate" type="xs:dateTime" />
+            <xs:element name="surveyDate" type="xs:date" />
+            <xs:element name="startVoteDate" type="xs:date" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="getListSurveysRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="tns:BaseRequest">
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="SurveyReturn">
+        <xs:complexContent>
+            <xs:extension base="tns:BaseResponse">
+                <xs:sequence>
+                    <xs:element type="tns:SurveyDto" minOccurs="0"
+                                maxOccurs="unbounded" name="surveys" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="getListSurveysResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="return" type="tns:SurveyReturn"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateSurveysRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="tns:BaseRequest">
+                    <xs:sequence>
+                        <xs:element name="surveyId" type="xs:long" />
+                        <xs:element name="surveyComment" type="xs:string" />
+                        <xs:element name="resultSurvey" type="xs:string" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="SurveyUpdateReturn">
+        <xs:complexContent>
+            <xs:extension base="tns:BaseResponse">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="updateSurveysResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="return" type="tns:SurveyUpdateReturn"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

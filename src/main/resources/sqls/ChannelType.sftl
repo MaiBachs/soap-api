@@ -1,0 +1,12 @@
+--findAppParamByTypeAndCode
+select type, code, name, value, status, telecom_service_id
+from app_params
+where type = :type
+  and code = :code
+  and status = 1 and rownum < 2
+
+--findAppParamsByType
+select type, code, name, value, status, telecom_service_id
+from app_params
+where type = :type
+  and status = 1

@@ -1,0 +1,19 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://www.viettel.com/msm/smartphone/ws"
+           targetNamespace="http://www.viettel.com/msm/smartphone/ws">
+    <xs:complexType name="BaseRequest">
+        <xs:sequence>
+            <xs:element name="location" type="xs:string" default="fr"/>
+            <xs:element name="token" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BaseResponse">
+        <xs:sequence>
+            <xs:element name="errorCode" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="traceCode" type="xs:string"/>
+            <xs:element name="detailError" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

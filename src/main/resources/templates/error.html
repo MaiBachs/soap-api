@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta name = "color-scheme" content = "light dark"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700" rel="stylesheet">
+    <style>
+        #app {
+            height: 100%;
+            width: 100%;
+            font-family: Roboto, sans-serif;
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.571429;
+            margin: 0;
+            color: #757575;
+            background-color: #fff;
+        }
+
+        .title {
+            font-weight: 400;
+            font-size: 14px;
+            color: #0D7688;
+            line-height: 1.7;
+            text-align: center;
+            margin: 0;
+        }
+
+        @media only screen and (max-width: 600px) {
+
+        }
+        .content-top .logo,
+        .content-top .text-top {
+            display: flex;
+            justify-content: center;
+        }
+
+        .content-top .text-top h2 {
+            color: #0D7688;
+        }
+
+        .content-one h2 {
+            color: #424242;
+            font-weight: 400;
+        }
+
+        .content-top .text-top {
+            text-align: center;
+            font-size: 14px;
+            margin: 20px 0px;
+        }
+
+
+        .content-one .text-top {
+            text-align: center;
+            font-size: 14px;
+            margin: 20px 0px;
+            color: #808080;
+        }
+
+        .remitimos p {
+            color: #5C5C5C;
+            font-size: 16px;
+            padding: 0px 20px;
+        }
+
+        .remitimos strong {
+            color: #353535;
+        }
+
+        .content-two {
+            background-color: #F5F5F5;
+            color: #006D82;
+        }
+
+        .tarifario {
+            min-width: 370px;
+            max-width: 370px;
+            margin: 0px auto;
+            padding: 30px 0px 20px 0px;
+
+        }
+
+        .tarifario-content {
+            display: flex;
+            align-items: center;
+
+        }
+
+        .tarifario-content p {
+            margin: 0px;
+            font-size: 18px;
+
+        }
+
+        .tarifario-content strong {
+            font-size: 18px;
+            margin-right: 7px;
+
+        }
+
+        .enviamos {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .content-medios {
+            background-color: #FFE60C;
+            color: #006D82;
+            margin: 0px;
+            padding: 15px;
+        }
+
+        .content-banking {
+            text-align: center;
+            padding: 35px 0px;
+            margin-top: 30px;
+
+
+        }
+
+
+        .content-este {
+            padding: 25px;
+            margin: 25px 0px;
+            margin-top: 0px;
+
+        }
+
+        .content-este p {
+            font-size: 14px;
+            color: #3C3C3C;
+        }
+
+        .content-bottom {
+            color: #209e91;
+            background-color: #FFF200;
+        }
+
+        .content-bottom .bottom {
+            width: 100%;
+            display: flex;
+        }
+
+        .phone-text strong {
+            font-size: 12px;
+        }
+
+        .phone-number-text {
+            display: grid;
+        }
+        .content-one img {
+            width: 100%;
+        }
+        .bottom .img-bottom {
+            width: 20%;
+            text-align: center;
+            margin: auto;
+            padding: 0px 15px;
+        }
+
+        .bottom .text-img {
+            width: 63%;
+        }
+
+
+        .content-bottom .mail-text strong {
+            font-size: 12px;
+            margin-top: 10px;
+        }
+        .content-bottom .img-phone-mail .mail-text {
+            display: flex;
+        }
+
+
+        .content-bottom .img-phone-mail .phone-text {
+            display: flex;
+            align-items: center;
+        }
+
+        .content-bottom .img-phone-mail img {
+            margin-right: 5px;
+        }
+
+        .bottom-mayor strong,
+        .bottom-mayor p {
+            font-size: 10px;
+            margin: 0px;
+        }
+        .text-consulta p {
+            font-size: 11px;
+        }
+
+        .bottom-mayor .bottom-mayor-content {
+            color: #438883;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            padding-bottom: 20px;
+
+        }
+        .bottom .phone-text .number-mail {
+            display: flex;
+            align-items: center;
+        }
+        .bottom-mayor p {
+            word-wrap: break-word;
+        }
+        .content-bottom .bottom {
+            padding-top: 15px;
+            background-color: #FFF200;
+        }
+        .phone-number-text .time {
+            font-size: 11px;
+            font-weight: 400;
+        }
+        .img-bottom img {
+            width: 100%;
+        }
+        .bottom-mayor-text {
+            padding-top: 10px;
+            width: 80%;
+            margin: 0px auto;
+        }
+
+        .bottom .phone-text img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .bottom .mail-text img {
+            height: 46px;
+            width: 47px;
+
+        }
+    </style>
+
+
+</head>
+<body style="margin:0">
+<div id="app">
+    <div class="propsed-mail">
+        <div class="content-home">
+            <div class="title">
+                <div class="logo">
+                    <a href="/logo.png"><img src="/logo.png" alt="logo" border="0"></a>
+                </div>
+                <div>
+                    <h2 >Welcome to MSM webservices!</h2>
+                </div>
+            </div>
+            <div class="content-one">
+
+                <div class="text-top">
+                    <h2>Error!</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

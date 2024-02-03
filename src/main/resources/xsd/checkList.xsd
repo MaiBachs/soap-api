@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://www.viettel.com/msm/smartphone/ws"
+           targetNamespace="http://www.viettel.com/msm/smartphone/ws">
+    <xs:include schemaLocation="base.xsd" />
+    <!--    mapAuditchecklist-->
+    <xs:complexType name="MapAuditorCheckListDto">
+        <xs:all>
+            <xs:element name="id" type="xs:long" />
+            <xs:element name="shopId" type="xs:long" />
+            <xs:element name="shopCode" type="xs:string" />
+            <xs:element name="shopName" type="xs:string" />
+            <xs:element name="channelTypeId" type="xs:long" />
+            <xs:element name="brId" type="xs:long"/>
+            <xs:element name="branchCode" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="getMapAuditorCheckListsRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="tns:BaseRequest">
+                    <xs:sequence>
+                        <xs:element name="staffId" type="xs:long"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="mapAuditorCheckListDtos">
+        <xs:sequence>
+            <xs:element name="channelTypeId" type="xs:long"/>
+            <xs:element name="channelTypeName" type="xs:string"/>
+            <xs:element name="MapAuditorCheckListDto" type="tns:MapAuditorCheckListDto" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="mapAuditorCheckListReturn">
+        <xs:complexContent>
+            <xs:extension base="tns:BaseResponse">
+                <xs:sequence>
+                    <xs:element type="tns:mapAuditorCheckListDtos" minOccurs="0"
+                                maxOccurs="unbounded" name="mapAuditorCheckLists" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="getListMapAuditorCheckListsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="return" type="tns:mapAuditorCheckListReturn"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+<!--    Checklist-->
+    <xs:complexType name="VisitPlanDto">
+        <xs:all>
+            <xs:element name="status" type="xs:long" />
+            <xs:element name="id" type="xs:long" />
+            <xs:element name="datePlan" type="xs:string" />
+            <xs:element name="visitTime" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="CheckListDto">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long" />
+            <xs:element name="brId" type="xs:long" />
+            <xs:element name="brCode" type="xs:string" />
+            <xs:element name="channelTypeId" type="xs:long" />
+            <xs:element name="channelTypeName" type="xs:string" />
+            <xs:element name="jobId" type="xs:long" />
+            <xs:element name="jobCode" type="xs:string" />
+            <xs:element name="jobName" type="xs:string" />
+            <xs:element name="quantityPerMonth" type="xs:long" />
+            <xs:element name="quantity" type="xs:long" />
+            <xs:element name="approvalScore" type="xs:float" />
+            <xs:element name="dateEvaluation1" type="xs:date" />
+            <xs:element name="dateEvaluation2" type="xs:date" />
+            <xs:element name="dateEvaluation3" type="xs:date" />
+            <xs:element name="dateEvaluation4" type="xs:date" />
+            <xs:element name="createdBy" type="xs:string" />
+            <xs:element name="createdDate" type="xs:date" />
+            <xs:element name="updatedBy" type="xs:string" />
+            <xs:element name="updatedDate" type="xs:date" />
+            <xs:element type="tns:staffDto" minOccurs="0"
+                        maxOccurs="unbounded" name="staffList" />
+            <xs:element type="tns:VisitPlanDto" minOccurs="0"
+                        maxOccurs="unbounded" name="visitPlanList" />
+            <xs:element name="checkListFull" type="xs:boolean" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="getCheckListOfAuditorRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="tns:BaseRequest">
+                    <xs:sequence>
+                        <xs:element name="brId" type="xs:long"/>
+                        <xs:element name="channelTypeId" type="xs:long"/>
+                        <xs:element name="channelId" type="xs:long"/>
+                        <xs:element name="x" type="xs:double"/>
+                        <xs:element name="y" type="xs:double"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="checkListOfAuditorReturn">
+        <xs:complexContent>
+            <xs:extension base="tns:BaseResponse">
+                <xs:sequence>
+                    <xs:element name="valid" type="xs:boolean"/>
+                    <xs:element type="tns:CheckListDto" minOccurs="0"
+                                maxOccurs="unbounded" name="evaluation" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="getCheckListOfAuditorResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="return" type="tns:checkListOfAuditorReturn"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--màn hình calidad-->
+    <xs:complexType name="JobDto">
+        <xs:all>
+            <xs:element name="jobId" type="xs:long" />
+            <xs:element name="parentId" type="xs:long" />
+            <xs:element name="code" type="xs:string" />
+            <xs:element name="name" type="xs:string" />
+            <xs:element name="resultDataType" type="xs:long" />
+            <xs:element name="category" type="xs:long" />
+            <xs:element name="status" type="xs:long" />
+            <xs:element name="createdDate" type="xs:dateTime" />
+            <xs:element name="lastUpdate" type="xs:dateTime" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="listJobsRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="tns:BaseRequest">
+                    <xs:sequence>
+                        <xs:element name="staffId" type="xs:long" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="listJobsResponse">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="tns:BaseResponse">
+                    <xs:sequence>
+                        <xs:element type="tns:JobDto" minOccurs="0"
+                                    maxOccurs="unbounded" name="jobs" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="staffDto">
+        <xs:all>
+            <xs:element name="staffId" type="xs:long" minOccurs="0"/>
+            <xs:element name="staffCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="name" type="xs:string" minOccurs="0"/>
+            <xs:element name="channelTypeId" type="xs:long" minOccurs="0"/>
+            <xs:element name="channelTypeName" type="xs:string" minOccurs="0"/>
+            <xs:element name="posCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="dniCust" type="xs:string" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="listStaffsRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="tns:BaseRequest">
+                    <xs:sequence>
+                        <xs:element name="shopId" type="xs:long" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="listStaffsReturn">
+        <xs:complexContent>
+            <xs:extension base="tns:BaseResponse">
+                <xs:sequence>
+                    <xs:element type="tns:staffDto" minOccurs="0"
+                                maxOccurs="unbounded" name="staffs" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="listStaffsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="return" type="tns:listStaffsReturn"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+<!--    detailCheckList-->
+    <xs:complexType name="reasonDto">
+        <xs:all>
+            <xs:element name="reasonId" type="xs:long" />
+            <xs:element name="code" type="xs:string" />
+            <xs:element name="name" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="itemConfigDto">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long" />
+            <xs:element name="itemName" type="xs:string" />
+            <xs:element name="jobId" type="xs:long" />
+            <xs:element name="percent" type="xs:long" />
+            <xs:element name="ok" type="xs:long" />
+            <xs:element name="nok" type="xs:long" />
+            <xs:element name="na" type="xs:long" />
+            <xs:element name="validation" type="xs:string" />
+            <xs:element name="gravedad" type="xs:string" />
+            <xs:element name="url" type="xs:string" />
+            <xs:element name="status" type="xs:long" />
+            <xs:element name="evaluationId" type="xs:long" />
+            <xs:element name="evaluationName" type="xs:string" />
+            <xs:element name="groupId" type="xs:long" />
+            <xs:element name="groupName" type="xs:string" />
+            <xs:element type="tns:reasonDto" minOccurs="0"
+                        maxOccurs="unbounded" name="reasons" />
+            <xs:element type="tns:fileDto" name="fileDto" />
+            <xs:element name="visitPlanId" type="xs:long" />
+            <xs:element name="planResultId" type="xs:long" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="getCheckListOfAuditorDetailRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="tns:BaseRequest">
+                    <xs:sequence>
+                        <xs:element name="evaluationId" type="xs:long"/>
+                        <xs:element name="channelTypeId" type="xs:long"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="checkListOfAuditorDetailReturn">
+        <xs:complexContent>
+            <xs:extension base="tns:BaseResponse">
+                <xs:sequence>
+                    <xs:element type="tns:itemConfigDto" minOccurs="0"
+                                maxOccurs="unbounded" name="items" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="getCheckListOfAuditorDetailResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="return" type="tns:checkListOfAuditorDetailReturn"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+<!--    resultCheckList-->
+    <xs:complexType name="ResultCheckListDto">
+        <xs:sequence>
+            <xs:element name="branchCode" type="xs:string" />
+            <xs:element name="branchName" type="xs:string" />
+            <xs:element name="visitTime" type="xs:string" />
+            <xs:element name="channelFromId" type="xs:long" />
+            <xs:element name="channelFromCode" type="xs:string" />
+            <xs:element name="evaluationDate" type="xs:date" />
+            <xs:element name="channelCode" type="xs:string" />
+            <xs:element name="channelName" type="xs:string" />
+            <xs:element name="quantity" type="xs:long" />
+            <xs:element name="quantityPerMonth" type="xs:long"/>
+            <xs:element name="location" type="xs:string" />
+            <xs:element name="valid" type="xs:boolean" />
+            <xs:element name="actionPlan" type="xs:boolean" />
+            <xs:element name="itemOk" type="xs:long" />
+            <xs:element name="totalItem" type="xs:long" />
+            <xs:element name="score" type="xs:float" />
+            <xs:element name="checkListResultCommnet" type="xs:string" />
+            <xs:element type="tns:staffDto" minOccurs="0"
+                        maxOccurs="unbounded" name="staffList" />
+            <xs:element name="checkListFull" type="xs:boolean" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CheckListItemDto">
+        <xs:all>
+            <xs:element name="result" type="xs:string" />
+            <xs:element name="reasonId" type="xs:long" />
+            <xs:element name="filePath" type="xs:string" />
+            <xs:element name="id" type="xs:long" />
+            <xs:element name="x" type="xs:double" />
+            <xs:element name="y" type="xs:double" />
+            <xs:element name="objectType" type="xs:long" />
+            <xs:element name="objectId" type="xs:long" />
+            <xs:element name="percent" type="xs:float"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="getCheckListResultRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="tns:BaseRequest">
+                    <xs:sequence>
+                        <xs:element name="branchId" type="xs:long"/>
+                        <xs:element name="branchCode" type="xs:string"/>
+                        <xs:element name="approvalScore" type="xs:float"/>
+                        <xs:element name="quantity" type="xs:long" />
+                        <xs:element name="quantityPerMonth" type="xs:long"/>
+                        <xs:element name="channelTypeId" type="xs:long"/>
+                        <xs:element name="channelTypeName" type="xs:string"/>
+                        <xs:element name="jobId" type="xs:long"/>
+                        <xs:element name="jobCode" type="xs:string"/>
+                        <xs:element name="pdvChannelObjectType" type="xs:string"/>
+                        <xs:element name="zonalId" type="xs:long"/>
+                        <xs:element name="zonalCode" type="xs:string"/>
+                        <xs:element name="pdvId" type="xs:long"/>
+                        <xs:element name="pdvCode" type="xs:string"/>
+                        <xs:element name="datePlan" type="xs:date"/>
+                        <xs:element name="endDatePlan" type="xs:date"/>
+                        <xs:element name="visitTime" type="xs:date"/>
+                        <xs:element name="staffId" type="xs:long"/>
+                        <xs:element name="staffCode" type="xs:string"/>
+                        <xs:element name="checkListResultCommnet" type="xs:string" />
+                        <xs:element name="xReject" type="xs:double"/>
+                        <xs:element name="yReject" type="xs:double"/>
+                        <xs:element type="tns:CheckListItemDto" minOccurs="0"
+                                    maxOccurs="unbounded" name="checkListItem" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="checkListResultReturn">
+        <xs:complexContent>
+            <xs:extension base="tns:BaseResponse">
+                <xs:sequence>
+                    <xs:element type="tns:ResultCheckListDto" name="evaluation" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="getCheckListResultResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="return" type="tns:checkListResultReturn"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+<!--    save file ftp-->
+    <xs:complexType name="fileDto">
+        <xs:all>
+            <xs:element name="fileContent" type="xs:string" />
+            <xs:element name="fileName" type="xs:string" />
+            <xs:element name="fileSize" type="xs:long" />
+            <xs:element name="fileType" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="saveFileFtpRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="tns:BaseRequest">
+                    <xs:sequence>
+                        <xs:element type="tns:fileDto" minOccurs="0"
+                                    maxOccurs="unbounded" name="fileDtos"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="saveFileFtpReturn">
+        <xs:complexContent>
+            <xs:extension base="tns:BaseResponse">
+                <xs:sequence>
+                    <xs:element name="filePath" type="xs:string" minOccurs="0"
+                                maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="saveFileFtpResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="return" type="tns:saveFileFtpReturn"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+<!--    getFile-->
+    <xs:element name="getFileFtpRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="tns:BaseRequest">
+                    <xs:sequence>
+                        <xs:element name="filePath" type="xs:string" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="getFileFtpReturn">
+        <xs:complexContent>
+            <xs:extension base="tns:BaseResponse">
+                <xs:sequence>
+                    <xs:element name="fileDto" type="tns:fileDto"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="getFileFtpResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="return" type="tns:getFileFtpReturn"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+<!--    calenda-->
+    <xs:complexType name="calendarDto">
+        <xs:all>
+            <xs:element name="channelTypeId" type="xs:long" />
+            <xs:element name="dateEvaluation1" type="xs:string" />
+            <xs:element name="dateEvaluation2" type="xs:string" />
+            <xs:element name="dateEvaluation3" type="xs:string" />
+            <xs:element name="dateEvaluation4" type="xs:string" />
+            <xs:element name="missEvaluation1" type="xs:string" />
+            <xs:element name="missEvaluation2" type="xs:string" />
+            <xs:element name="missEvaluation3" type="xs:string" />
+            <xs:element name="missEvaluation4" type="xs:string" />
+            <xs:element name="shopId" type="xs:long" />
+            <xs:element name="shopCode" type="xs:string" />
+            <xs:element name="shopName" type="xs:string" />
+            <xs:element name="jobName" type="xs:string" />
+            <xs:element name="jobCode" type="xs:string" />
+            <xs:element name="isActionPlan" type="xs:boolean" />
+            <xs:element name="actionPlanDate" type="xs:string" />
+            <xs:element name="missActionPlanDate" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="calendarRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="tns:BaseRequest">
+                    <xs:sequence>
+                        <xs:element name="auditorId" type="xs:long" />
+                        <xs:element name="date" type="xs:string" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="calendarReturn">
+        <xs:complexContent>
+            <xs:extension base="tns:BaseResponse">
+                <xs:sequence>
+                    <xs:element name="calendarDtos" type="tns:calendarDto" minOccurs="0"
+                                maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="calendarResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="return" type="tns:calendarReturn"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+<!--penalty    -->
+    <xs:complexType name="totalPenaltyDto">
+        <xs:sequence>
+            <xs:element name="totalPenalty" type="xs:long" />
+            <xs:element name="auditorId" type="xs:long" />
+            <xs:element name="auditorCode" type="xs:string" />
+            <xs:element type="tns:branchPenaltyDto" minOccurs="0"
+                        maxOccurs="unbounded" name="branchPenaltyDtos" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="branchPenaltyDto">
+        <xs:sequence>
+            <xs:element name="brPenalty" type="xs:long" />
+            <xs:element name="branchId" type="xs:long" />
+            <xs:element name="branchCode" type="xs:string" />
+            <xs:element type="tns:channelTypePenaltyDto" minOccurs="0"
+                        maxOccurs="unbounded" name="channelTypePenaltyDtos" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="channelTypePenaltyDto">
+        <xs:sequence>
+            <xs:element name="channelPenalty" type="xs:long" />
+            <xs:element name="chanelTypeId" type="xs:long" />
+            <xs:element name="channelTypeName" type="xs:string" />
+            <xs:element type="tns:shopPenaltyDto" minOccurs="0"
+                        maxOccurs="unbounded" name="shopPenaltyDtos" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="shopPenaltyDto">
+        <xs:sequence>
+            <xs:element name="shopPenalty" type="xs:long" />
+            <xs:element name="penaltyResultId" type="xs:long" />
+            <xs:element name="shopId" type="xs:long" />
+            <xs:element name="shopCode" type="xs:string" />
+            <xs:element name="numberNonComFor" type="xs:long" />
+            <xs:element name="channelTypeName" type="xs:string" />
+            <xs:element type="tns:evaluationPenaltyDto" minOccurs="0"
+                        maxOccurs="unbounded" name="evaluationPenaltyDtos" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="evaluationPenaltyDto">
+        <xs:sequence>
+            <xs:element name="evaluationId" type="xs:long" />
+            <xs:element name="evaluationName" type="xs:string" />
+            <xs:element type="tns:itemPenaltyDto" minOccurs="0"
+                        maxOccurs="unbounded" name="itemPenaltyDtos" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="itemPenaltyDto">
+        <xs:all>
+            <xs:element name="penaltyResultDetailId" type="xs:long" />
+            <xs:element name="itemId" type="xs:long" />
+            <xs:element name="itemName" type="xs:string" />
+            <xs:element name="penalidad" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="penaltyRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="tns:BaseRequest">
+                    <xs:sequence>
+                        <xs:element name="auditorId" type="xs:long" />
+                        <xs:element name="auditorCode" type="xs:string" />
+                        <xs:element name="date" type="xs:string" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="penaltyReturn">
+        <xs:complexContent>
+            <xs:extension base="tns:BaseResponse">
+                <xs:sequence>
+                    <xs:element name="totalPenaltyDtos" type="tns:totalPenaltyDto" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="penaltyResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="return" type="tns:penaltyReturn"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+<!--penalty detail-->
